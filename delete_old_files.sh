@@ -35,7 +35,7 @@ then
         then 
         echo "please provide the time to delte the logs"
         else
-        FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime "+"$TIME -name "*.log")
+        FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime $TIME -name "*.log")
 
         while IFS= read -r line
             do

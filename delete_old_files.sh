@@ -39,7 +39,7 @@ then
     if [ "$archive" == "delete" ]
     then 
         echo -e "$G Source directory exists $SOURCE_DIR please delete $N"
-        FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime $TIME -name "*.log")
+        FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime "+"$TIME -name "*.log")
 
         while IFS= read -r line
             do

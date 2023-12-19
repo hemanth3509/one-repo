@@ -36,12 +36,17 @@ then
         echo "please provide the time to delte the logs"
         else
         FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime $TIME -name "*.log")
-
+           if [ $? != 0 ]
+           then 
+           echo -e " $R ERRO $N"
+           exit 1
+           else  
         while IFS= read -r line
             do
                 echo "Deleting file: $line"
                 rm -rf $line
         done <<< $FILES_TO_DELETE
+            fi
         fi
     fi
 fi

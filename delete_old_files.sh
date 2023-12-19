@@ -41,7 +41,7 @@ then
            echo -e " $R ERRO $N"
            exit 1
            else  
-             if [ $FILES_TO_DELETE == 0 ]
+             if [ "$FILES_TO_DELETE" == " " ]
              then 
              echo -e "$Y No file to delete $N"
              else

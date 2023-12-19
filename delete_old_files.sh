@@ -7,8 +7,6 @@ N="\e[0m"
 
 echo " Script started $OPTARG"
 
-
-
 help(){
     echo -e " Please find the below usage of the script \n"
     echo -e " -s <source dir> \n "
@@ -25,7 +23,7 @@ then
     else
     if [ "$archive" == "archive" ] && [ ! -d "$DESTINATION" ]
     then
-    echo -e "$R Please provide destination directory $N"
+    echo -e "$R Please provide valid destination directory $N"
     else
      if [ "$archive" == "archive" ] && [ -d "$DESTINATION" ]
      then
@@ -41,6 +39,13 @@ then
     if [ "$archive" == "delete" ]
     then 
         echo -e "$G Source directory exists $SOURCE_DIR please delete $N"
+        FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime $TIME -name "*.log")
+
+        while IFS= read -r line
+            do
+                echo "Deleting file: $line"
+                rm -rf $line
+        done <<< $FILES_TO_DELETE
     fi
 fi
 }

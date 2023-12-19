@@ -41,11 +41,16 @@ then
            echo -e " $R ERRO $N"
            exit 1
            else  
+             if [ $FILES_TO_DELETE == 0 ]
+             then 
+             echo -e "$Y No file to delete $N"
+             else
         while IFS= read -r line
             do
                 echo "Deleting file: $line"
                 rm -rf $line
         done <<< $FILES_TO_DELETE
+                fi
             fi
         fi
     fi

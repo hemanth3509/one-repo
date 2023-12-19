@@ -66,6 +66,7 @@ options(){
 if [ "$1" != "-s" ]
     then
         help
+        exit 1
     else
         options "$@"
 fi

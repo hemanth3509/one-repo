@@ -31,6 +31,10 @@ then
     if [ "$archive" == "delete" ]
     then 
         echo -e "$G Source directory exists $SOURCE_DIR please delete $N"
+        if [ "$TIME" = " " ]
+        then 
+        echo "please provide the time to delte the logs"
+        else
         FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime "+"$TIME -name "*.log")
 
         while IFS= read -r line
@@ -38,6 +42,7 @@ then
                 echo "Deleting file: $line"
                 rm -rf $line
         done <<< $FILES_TO_DELETE
+        fi
     fi
 fi
 }

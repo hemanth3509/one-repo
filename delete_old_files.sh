@@ -18,14 +18,16 @@ action (){
     if [ ! -d "$SOURCE_DIR" ]  # ! denotes opposite
 then
     echo -e "$R Source directory: $SOURCE_DIR does not exists. $N"
+    exit 1
     else
     if [ "$archive" == "archive" ] && [ ! -d "$DESTINATION" ]
     then
     echo -e "$R Please provide valid destination directory $N"
+    exit 1
     else
      if [ "$archive" == "archive" ] && [ -d "$DESTINATION" ]
      then
-    echo -e "$G destination exits to archive $N"
+    echo -e "$G destination exits to archive $N" # Replace with zip command
     fi
    fi
     if [ "$archive" == "delete" ]
@@ -35,6 +37,7 @@ then
         then 
         echo "please provide the time to delte the logs"
         echo " If date is provided please add + before time "
+        exit 1
         else
         FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime $TIME -name "*.log")
         echo "$FILES_TO_DELETE"

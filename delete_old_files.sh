@@ -33,7 +33,7 @@ then
     if [ "$archive" == "delete" ]
     then 
         echo -e "$G Source directory exists $SOURCE_DIR please delete $N"
-        if [[ -z "$TIME" || "$TIME" -ne +* ]]
+        if [ -z "$TIME" ] || [ "$TIME" -ne +* ]
                 then 
         echo "please provide the time to delte the logs"
         echo " If date is provided please add + before time "

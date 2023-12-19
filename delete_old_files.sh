@@ -5,9 +5,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-echo " Script started "
-
 help(){
+    echo " ERROR in passing the arguments "
     echo " USAGE : { sh old-logs.sh -s <source-dir> -a <archive|delete> -d <destination> -t <day> -m <memory-in-mb> } "
     echo " -s <source dir> "
     echo " -a <Archive> or <Delete>"
@@ -76,4 +75,5 @@ if [ "$archive" == "archive" ] || [ "$archive" == "delete" ]
     action "$archive" "$DESTINATION"
     else
     help
+    exit 1
 fi

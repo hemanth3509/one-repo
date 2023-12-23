@@ -18,12 +18,12 @@ action (){
     if [ ! -d "$SOURCE_DIR" ] 
     then
       echo -e "$R Source directory: $SOURCE_DIR does not exists. $N"
+
       exit 1
     else
     if [ "$archive" == "archive" ] && [ ! -d "$DESTINATION" ] # When archive specified then destination is mandate
       then
        echo -e "$R Please provide valid destination directory $N"
-       help
        exit 1
     else
     if [ "$archive" == "archive" ] && [ -d "$DESTINATION" ] # When bothe archive and destination is given
@@ -85,7 +85,7 @@ action (){
 fi
 }
 
-options(){
+options(){                 # Using getopts for taking the arguments as options form the user
     OPTSTRING=":s:a:d:t:"
         while getopts ${OPTSTRING} opt;
             do
@@ -105,13 +105,15 @@ options(){
         shift $((OPTIND -1))
 }
 
-if [ "$1" != "-s" ]
-    then
-        help
-        exit 1
-    else
-        options "$@"
-fi
+options "$@"
+
+#if [ "$1" != "-s" ]  # When the manda
+#    then
+#        help
+#        exit 1
+#    else
+#        options "$@"
+#fi
 
 if [ "$archive" == "archive" ] || [ "$archive" == "delete" ]
     then

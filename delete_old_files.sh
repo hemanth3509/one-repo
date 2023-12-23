@@ -43,7 +43,7 @@ then
         echo "$FILES_TO_DELETE"
            if [ $? != 0 ]
            then 
-           echo -e " $R ERRO $N"
+           echo -e " $R ERROR $N"
            exit 1
            else  
              if [ -n "$FILES_TO_DELETE" ]

@@ -28,6 +28,24 @@ then
      if [ "$archive" == "archive" ] && [ -d "$DESTINATION" ]
      then
     echo -e "$G destination exits to archive $N" # Replace with zip command
+    FILES_TO_ARCHIVE=$(find $SOURCE_DIR -type f -mtime +$TIME -name "*.log")
+    if [ $? != 0 ]
+           then 
+           echo -e " $R ERROR $N"
+           exit 1
+           else  
+             if [ -n "$FILES_TO_ARCHIVE" ]
+             then 
+        while IFS= read -r line
+            do
+                echo "Archiving files : $line"
+                zip -r "$DESTINATION/$(basename "$line").zip"
+                rm -rf $line
+        done <<< $FILES_TO_ARCHIVE
+             else
+             echo -e "$Y No file to archive $N"
+                fi
+            fi
     fi
    fi
     if [ "$archive" == "delete" ]

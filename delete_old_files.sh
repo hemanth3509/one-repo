@@ -59,7 +59,7 @@ action (){
     then 
         if [ -z "$TIME" ] # Checks if time arg is provided or not
             then 
-              echo "please provide the time to delte the logs"
+              echo -e "$R please provide the time to delte the logs $N"
               help
               exit 1
         else

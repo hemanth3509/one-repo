@@ -39,8 +39,14 @@ then
         while IFS= read -r line
             do
                 echo "Archiving files : $line"
-                zip -r "$DESTINATION/$(basename "$line").zip"
+                zip -r "$DESTINATION/$(basename "$line").zip" $line
+                if [ $? == 0 ]
+                then
                 rm -rf $line
+                else
+                echo " Error in archiving"
+                exit 1
+                fi
         done <<< $FILES_TO_ARCHIVE
              else
              echo -e "$Y No file to archive $N"
